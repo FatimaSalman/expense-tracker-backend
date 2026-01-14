@@ -2,6 +2,7 @@ package com.fatima.expense_tracker.controller
 
 import com.fatima.expense_tracker.model.Expense
 import com.fatima.expense_tracker.repository.ExpenseRepository
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -21,7 +22,7 @@ class ExpenseController(val repository: ExpenseRepository) {
     fun deleteExpense(@PathVariable id: Long): ResponseEntity<Void> {
         return if (repository.existsById(id)) {
             repository.deleteById(id)
-            ResponseEntity.ok().build()
+            ResponseEntity.noContent().build()
         } else {
             ResponseEntity.notFound().build()
         }
