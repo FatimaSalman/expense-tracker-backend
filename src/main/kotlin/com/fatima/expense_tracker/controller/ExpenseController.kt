@@ -15,4 +15,15 @@ class ExpenseController(val repository: ExpenseRepository) {
     // 2. add new expense
     @PostMapping
     fun addExpense(@RequestBody expense: Expense): Expense = repository.save(expense)
+
+    // 2. delete a expense
+    @DeleteMapping("/{id}")
+    fun deleteExpense(@PathVariable id: Long): ResponseEntity<Void> {
+        return if (repository.existsById(id)) {
+            repository.deleteById(id)
+            ResponseEntity.ok().build()
+        } else {
+            ResponseEntity.notFound().build()
+        }
+    }
 }
