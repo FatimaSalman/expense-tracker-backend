@@ -18,16 +18,6 @@ class ExpenseController(val repository: ExpenseRepository) {
     fun addExpense(@RequestBody expense: Expense): Expense = repository.save(expense)
 
     // 2. delete a expense
-//    @DeleteMapping("/{id}")
-//    fun deleteExpense(@PathVariable id: Long): ResponseEntity<Void> {
-//        return if (repository.existsById(id)) {
-//            repository.deleteById(id)
-//            ResponseEntity.ok().build()
-//        } else {
-//            ResponseEntity.notFound().build()
-//        }
-//    }
-
     @DeleteMapping("/{id}")
     fun deleteExpense(@PathVariable id: Long): ResponseEntity<Map<String, String>> {
         return if (repository.existsById(id)) {
@@ -37,4 +27,11 @@ class ExpenseController(val repository: ExpenseRepository) {
             ResponseEntity.status(404).body(mapOf("message" to "عذراً، المصروف غير موجود"))
         }
     }
+
+    // 3. get categories
+    @GetMapping("/categories")
+    fun getCategories(): List<String> {
+        return listOf("Food", "Transport", "Shopping", "Bills", "Health", "General", "Education")
+    }
+
 }

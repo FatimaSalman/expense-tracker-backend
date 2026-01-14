@@ -1,5 +1,6 @@
 package com.fatima.expense_tracker.model
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -12,5 +13,6 @@ data class Expense(
     val title: String,
     val amount: Double,
     val category: String,
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     val createdAt: LocalDateTime = LocalDateTime.now()
 )
