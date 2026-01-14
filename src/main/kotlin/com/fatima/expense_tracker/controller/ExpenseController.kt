@@ -22,7 +22,7 @@ class ExpenseController(val repository: ExpenseRepository) {
     fun deleteExpense(@PathVariable id: Long): ResponseEntity<Void> {
         return if (repository.existsById(id)) {
             repository.deleteById(id)
-            ResponseEntity.noContent().build()
+            ResponseEntity.ok().build()
         } else {
             ResponseEntity.notFound().build()
         }
