@@ -1,6 +1,7 @@
 package com.fatima.expense_tracker.model
 
 import jakarta.persistence.*
+import java.time.LocalDateTime
 
 @Entity
 @Table(name = "expenses")
@@ -10,5 +11,6 @@ data class Expense(
     val id: Long = 0,
     val title: String,
     val amount: Double,
-    val category: String
+    val category: String,
+    val createdAt: LocalDateTime = LocalDateTime.now()
 )
